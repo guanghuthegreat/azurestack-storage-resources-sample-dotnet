@@ -1,0 +1,1 @@
+# azurestack-storage-resources-sample-dotnet
