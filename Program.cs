@@ -25,7 +25,7 @@ namespace AzureStackStorage
         public static string AzS_SubscriptionID;
         public static string AzS_TenantID;
         public static string AzS_ClientID;
-        public static string AzS_SecurityKey;
+        public static string AzS_SecretKey;
         public static string AzS_Location;
         public static Microsoft.Azure.Management.Storage.Models.Sku DefaultSku = new Microsoft.Azure.Management.Storage.Models.Sku(SkuName.StandardLRS);
         public static Kind DefaultStorageKind = Kind.Storage;
@@ -48,7 +48,7 @@ namespace AzureStackStorage
                 AzS_SubscriptionID = Environment.GetEnvironmentVariable("AZS_SUBID");
                 AzS_TenantID = Environment.GetEnvironmentVariable("AZS_TENANTID");
                 AzS_ClientID = Environment.GetEnvironmentVariable("AZS_CLIENTID");
-                AzS_SecurityKey = Environment.GetEnvironmentVariable("AZS_SECURITYKEY");
+                AzS_SecretKey = Environment.GetEnvironmentVariable("AZS_SECRETKEY");
                 AzS_Location = Environment.GetEnvironmentVariable("AZS_LOCATION");
 
                 var templist = new List<string>
@@ -57,7 +57,7 @@ namespace AzureStackStorage
                     AzS_ClientID,
                     AzS_Location,
                     AzS_ManagementEndPoint,
-                    AzS_SecurityKey, 
+                    AzS_SecretKey, 
                     AzS_StorageEndPoint, 
                     AzS_SubscriptionID, 
                     AzS_TenantID};
@@ -72,7 +72,7 @@ namespace AzureStackStorage
                     Console.WriteLine("AZS_SUBID");                    
                     Console.WriteLine("AZS_TENANTID");
                     Console.WriteLine("AZS_CLIENTID");   
-                    Console.WriteLine("AZS_SECURITYKEY");                    
+                    Console.WriteLine("AZS_SECRETKEY");                    
                     Console.WriteLine("AZS_LOCATION");
                 }
                 else
@@ -113,13 +113,8 @@ namespace AzureStackStorage
                 s.AuthenticationEndpoint = new Uri(AzS_ActiveDirectory);
                 s.TokenAudience = new Uri(AzS_ActiveDirectoryResourceID);
                 s.ValidateAuthority = true;
-                string seckey = AzS_SecurityKey;
 
-                string tid = AzS_TenantID;
-                string cid = AzS_ClientID;
-
-
-                var serviceCreds = await ApplicationTokenProvider.LoginSilentAsync(tid, cid, seckey, s);
+                var serviceCreds = await ApplicationTokenProvider.LoginSilentAsync(AzS_TenantID, AzS_ClientID, AzS_SecretKey, s);
 
                 return serviceCreds;
             }
@@ -147,21 +142,18 @@ namespace AzureStackStorage
 
         public async static Task SampleRunAsync()
         {
-            string muri = AzS_ManagementEndPoint;
-            string sid = AzS_SubscriptionID;
-
             var creds = await AzureAuthenticateAsync();
 
             var resourceClient = new ResourceManagementClient(creds)
             {
-                BaseUri = new Uri(muri),
-                SubscriptionId = sid
+                BaseUri = new Uri(AzS_ManagementEndPoint),
+                SubscriptionId = AzS_SubscriptionID
             };
 
             var storageClient = new StorageManagementClient(creds)
             {
-                BaseUri = new Uri(muri),
-                SubscriptionId = sid
+                BaseUri = new Uri(AzS_ManagementEndPoint),
+                SubscriptionId = AzS_SubscriptionID
             };
 
             StorageSampleE2E(resourceClient, storageClient);
