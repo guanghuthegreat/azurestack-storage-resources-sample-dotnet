@@ -1,4 +1,4 @@
----
+ ---
 services: azure-resource-manager, azure-storeage
 platforms: dotnet
 author: guanghu
@@ -11,20 +11,24 @@ This sample explains how to manage your resources and storage services in Azure 
 **On this page**
 - [Run this sample](#run)
 - [What is program.cs doing?](#example)
-    -[create a resource group](#create-rg)
-    -[create a storage account](#create-sa)
-    -[get the access keys of storage account](#get-sa-keys)
-    -[get a list of storage accounts within a resource group](#list-sa-rg)
-    -[get all the storage accounts for a given subscription](#list-sa-sub)
-    -[create a new blob container](#create-blob)
-    -[upload a blob](#upload)
-    -[download a blob](#download)
-    -[delete a storage account](#delete-sa)
-    -[delete a resource group](#delete-rg)
+    - [create a resource group](#create-rg)
+    - [create a storage account](#create-sa)
+    - [get the access keys of storage account](#get-sa-keys)
+    - [get a list of storage accounts within a resource group](#list-sa-rg)
+    - [get all the storage accounts for a given subscription](#list-sa-sub)
+    - [create a new blob container](#create-blob)
+    - [upload a blob](#upload)
+    - [download a blob](#download)
+    - [delete a storage account](#delete-sa)
+    - [delete a resource group](#delete-rg)
 
 <a id="run"></a>
 ## Run this sample
+### Prerequisits
+1. This sample requires to be run either from the [Azure Stack Development Kit(ASDK)](https://docs.microsoft.com/en-us/azure/azure-stack/azure-stack-connect-azure-stack#connect-with-remote-desktop) or from an external client if you are [connected through VPN](https://docs.microsoft.com/en-us/azure/azure-stack/azure-stack-connect-azure-stack#connect-with-vpn).
 1. If you don't have it, install the [.NET Core SDK](https://www.microsoft.com/net/core).
+1. Recommand to [Install and configure CLI for use with Azure Stack](https://docs.microsoft.com/en-us/azure/azure-stack/azure-stack-connect-cli)
+### Steps
 1. Clone the repository.
     ```
     git clone https://github.com/guanghuthegreat/azurestack-storage-resources-sample-dotnet.git
@@ -54,7 +58,7 @@ This sample explains how to manage your resources and storage services in Azure 
     Set AZS_TENANTID={your tenant id}
     Set AZS_CLIENTID={your client id}
     Set AZS_SECRETKEY={your client secret key}
-    Set AZS_LOCATION={the location (region) of your Azure Stack deployment, usually it's 'local' for ASDK deployments}
+    Set AZS_LOCATION={the location (region) of your Azure Stack deployment, like 'local' in a ASDK deployments}
     ```
 1. Run the sample.
     ```
