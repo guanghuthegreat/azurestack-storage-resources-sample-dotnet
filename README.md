@@ -1,4 +1,4 @@
- ---
+---
 services: azure-resource-manager, azure-storeage
 platforms: dotnet
 author: guanghu
