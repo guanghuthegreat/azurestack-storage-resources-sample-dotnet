@@ -51,7 +51,7 @@ This sample explains how to manage your resources and storage services in Azure 
 1. Export these environment variables and fill in the values you created in previous steps.  
     ```
     Set AZS_ACTTIVEDIRECTORY={the AAD login URI}
-    Set AZS_ACTTIVEDIRECTORYRESOURCEID={the value of audience URI retrieved in previous step}
+    Set AZS_ACTTIVEDIRECTORYRESOURCEID={the AAD resource ID}
     Set AZS_MANAGEMENTENDPOINT={the management endpoint URI}
     Set AZS_STORAGENDPOINT={the storage endpoint URI}
     Set AZS_SUBID={your subscription id}
